@@ -1,14 +1,18 @@
 import { fetchNoteById } from '@/lib/api';
 import { Metadata } from 'next';
-import NoteClient from './Note.client'; // Якщо в тебе є клієнтський компонент
-// Якщо немає — скажи, я напишу
+import { notFound } from 'next/navigation';
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+interface PageProps {
+  params: {
+    id: string;
+  };
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   try {
     const note = await fetchNoteById(params.id);
     const title = `${note.title} — NoteHub`;
     const description = `${note.content.slice(0, 120)}${note.content.length > 120 ? '...' : ''}`;
-
     return {
       title,
       description,
@@ -33,9 +37,22 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   }
 }
 
-export default async function NotePage({ params }: { params: { id: string } }) {
+// Дефолтний компонент сторінки
+const NotePage = async ({ params }: PageProps) => {
   const note = await fetchNoteById(params.id);
 
-  return <NoteClient note={note} />;
-}
+  // Якщо нотатку не знайдено, перенаправляємо на 404
+  if (!note) {
+    notFound();
+  }
+
+  return (
+    <div>
+      <h1>{note.title}</h1>
+      <p>{note.content}</p>
+    </div>
+  );
+};
+
+export default NotePage;
 

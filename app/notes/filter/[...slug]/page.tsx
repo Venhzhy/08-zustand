@@ -24,7 +24,7 @@ export async function generateMetadata({
     openGraph: {
       title,
       description,
-      url: `https://my-domain.com/notes/filter/${slug.join('/')}`,
+      url: `https://your-domain.com/notes/filter/${slug.join('/')}`,
       images: ['https://ac.goit.global/fullstack/react/notehub-og-meta.jpg'],
     },
   };
