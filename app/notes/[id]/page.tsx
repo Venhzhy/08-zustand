@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         images: ['https://ac.goit.global/fullstack/react/notehub-og-meta.jpg'],
       },
     };
-  } catch (_) {
+  } catch (_error) {
     return {
       title: 'Note — NoteHub',
       description: 'Note details.',
@@ -37,11 +37,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 }
 
-// Дефолтний компонент сторінки
 const NotePage = async ({ params }: PageProps) => {
   const note = await fetchNoteById(params.id);
 
-  // Якщо нотатку не знайдено, перенаправляємо на 404
   if (!note) {
     notFound();
   }

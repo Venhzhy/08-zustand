@@ -1,5 +1,5 @@
 import NoteForm from '@/components/NoteForm/NoteForm';
-import css from './CreateNote.module.css'; // скопіюй CreateNote.module.css у /app або components відповідно
+import css from './CreateNote.module.css'; 
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
