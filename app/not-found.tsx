@@ -1,15 +1,20 @@
-export const metadata = {
+import type { Metadata } from 'next';
+import css from './NotFoundPage.module.css';
+
+export const metadata: Metadata = {
   title: '404 — Page not found — NoteHub',
   description: 'The page you requested does not exist on NoteHub.',
   openGraph: {
     title: '404 — Page not found — NoteHub',
     description: 'The page you requested does not exist on NoteHub.',
     url: 'https://my-domain.com/404',
-    images: ['https://ac.goit.global/fullstack/react/notehub-og-meta.jpg'],
+    images: [
+      {
+        url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
+      },
+    ],
   },
 };
-
-import css from "./NotFoundPage.module.css";
 
 export default function NotFoundPage() {
   return (

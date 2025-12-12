@@ -6,7 +6,7 @@ import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 
 const roboto = Roboto({
-  weight: ['400', '500', '700'],     
+  weight: ['400', '500', '700'],
   variable: '--font-roboto',
   subsets: ['latin'],
   display: 'swap',
@@ -24,12 +24,18 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: 'NoteHub',
-  description: 'NoteHub is a simple and efficient application to manage personal notes.',
+  description:
+    'NoteHub is a simple and efficient application to manage personal notes.',
   openGraph: {
     title: 'NoteHub',
-    description: 'NoteHub is a simple and efficient application to manage personal notes.',
+    description:
+      'NoteHub is a simple and efficient application to manage personal notes.',
     url: 'https://my-domain.com',
-    images: ['https://ac.goit.global/fullstack/react/notehub-og-meta.jpg'],
+    images: [
+      {
+        url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
+      },
+    ],
   },
 };
 
@@ -41,8 +47,10 @@ export default function RootLayout({
   modal: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={roboto.variable}>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="en">
+      <body
+        className={`${roboto.variable} ${geistSans.variable} ${geistMono.variable}`}
+      >
         <TanStackProvider>
           <Header />
           {children}
@@ -53,3 +61,4 @@ export default function RootLayout({
     </html>
   );
 }
+
