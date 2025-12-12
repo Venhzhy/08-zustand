@@ -5,8 +5,9 @@ import { useParams } from 'next/navigation';
 import { fetchNoteById } from '@/lib/api';
 import NoteDetails from '@/components/NoteDetails/NoteDetails';
 
-export default function NoteDetailsClient() {
+export default function NoteClient() {
   const { id } = useParams<{ id: string }>();
+
   const {
     data: note,
     isLoading,
@@ -18,18 +19,9 @@ export default function NoteDetailsClient() {
     refetchOnMount: false,
   });
 
-  if (isLoading) {
-    return <p>Loading, please wait...</p>;
-  }
-  if (isError) {
-    return <p>Something went wrong.</p>;
-  }
-  if (!note) {
-    return <p>Something went wrong.</p>;
-  }
-  return (
-    <>
-      <NoteDetails note={note} />
-    </>
-  );
+  if (isLoading) return <p>Loading...</p>;
+  if (isError || !note) return <p>Something went wrong.</p>;
+
+  return <NoteDetails note={note} />;
 }
+

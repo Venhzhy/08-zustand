@@ -1,11 +1,14 @@
- import { fetchNoteById } from '@/lib/api';
+import { fetchNoteById } from '@/lib/api';
 import { Metadata } from 'next';
+import NoteClient from './Note.client'; // Якщо в тебе є клієнтський компонент
+// Якщо немає — скажи, я напишу
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
   try {
     const note = await fetchNoteById(params.id);
     const title = `${note.title} — NoteHub`;
     const description = `${note.content.slice(0, 120)}${note.content.length > 120 ? '...' : ''}`;
+
     return {
       title,
       description,
@@ -29,3 +32,10 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
     };
   }
 }
+
+export default async function NotePage({ params }: { params: { id: string } }) {
+  const note = await fetchNoteById(params.id);
+
+  return <NoteClient note={note} />;
+}
+

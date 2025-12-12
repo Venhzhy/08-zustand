@@ -19,7 +19,7 @@ interface createNoteProps {
   tag: string;
 }
 
-// type Tags = string[];
+type Tags = string[];
 
 const myToken = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
 axios.defaults.baseURL = 'https://notehub-public.goit.study/api';
